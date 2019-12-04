@@ -6,6 +6,14 @@ import cv2
 import numpy as np
 
 from vae.controller import VAEController
+<<<<<<< HEAD
+import tensorflow as tf
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
+=======
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 
 
 def create_figure_and_sliders(name, state_dim):

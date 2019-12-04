@@ -67,8 +67,37 @@ class ConvVAE(object):
             h = tf.layers.conv2d(h, 64, 4, strides=2, activation=tf.nn.relu, name="enc_conv3")
             h = tf.layers.conv2d(h, 64, 4, strides=2, activation=tf.nn.relu, name="enc_conv4")
             # h = tf.reshape(h, [-1, 3 * 8 * 256])
+<<<<<<< HEAD
+
+########################################################################
+
+            # W_conv1 = tf.Variable(tf.truncated_normal(shape=[4, 4, 3, 32], stddev=5e-2))
+            # b_conv1 = tf.Variable(tf.constant(0.1, shape=[32]))
+            # h_conv1 = tf.nn.relu(tf.nn.conv2d(self.input_tensor, W_conv1, strides=[1, 2, 2, 1], padding='VALID') + b_conv1)
+            # h_conv1_norm = tf.contrib.layers.batch_norm(h_conv1)
+
+            # W_conv2 = tf.Variable(tf.truncated_normal(shape=[4, 4, 32, 64], stddev=5e-2))
+            # b_conv2 = tf.Variable(tf.constant(0.1, shape=[64]))
+            # h_conv2 = tf.nn.relu(tf.nn.conv2d(h_conv1_norm, W_conv2, strides=[1, 2, 2, 1], padding='VALID') + b_conv2)
+            # h_conv2_norm = tf.contrib.layers.batch_norm(h_conv2)
+
+            # W_conv3 = tf.Variable(tf.truncated_normal(shape=[4, 4, 64, 64], stddev=5e-2))
+            # b_conv3 = tf.Variable(tf.constant(0.1, shape=[64]))
+            # h_conv3 = tf.nn.relu(tf.nn.conv2d(h_conv2_norm, W_conv3, strides=[1, 2, 2, 1], padding='VALID') + b_conv3)
+            # h_conv3_norm = tf.contrib.layers.batch_norm(h_conv3)
+
+            # W_conv4 = tf.Variable(tf.truncated_normal(shape=[4, 4, 64, 64], stddev=5e-2))
+            # b_conv4 = tf.Variable(tf.constant(0.1, shape=[64]))
+            # h_conv4 = tf.nn.relu(tf.nn.conv2d(h_conv3_norm, W_conv4, strides=[1, 2, 2, 1], padding='VALID') + b_conv4)
+            # h = tf.contrib.layers.batch_norm(h_conv4)    
+
             h = conv_to_fc(h)
 
+
+=======
+            h = conv_to_fc(h)
+
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
             # VAE
             self.mu = tf.layers.dense(h, self.z_size, name="enc_fc_mu")
             self.logvar = tf.layers.dense(h, self.z_size, name="enc_fc_log_var")

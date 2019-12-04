@@ -130,7 +130,12 @@ class DonkeyVAEEnv(gym.Env):
         return self.controller.close_connection()
 
     def exit_scene(self):
+<<<<<<< HEAD
+        pass
+        # self.controller.handler.send_exit_scene()
+=======
         self.controller.handler.send_exit_scene()
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 
     def jerk_penalty(self):
         jerk_penalty = 0
@@ -197,7 +202,11 @@ class DonkeyVAEEnv(gym.Env):
         return self.postprocessing_step(action, observation, reward, done, info)
 
     def reset(self):
+<<<<<<< HEAD
+        # self.controller.reset()
+=======
         self.controller.reset()
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
         self.command_history = np.zeros((1, self.n_commands * self.n_command_history))
         observation, reward, done, info = self.observe()
 

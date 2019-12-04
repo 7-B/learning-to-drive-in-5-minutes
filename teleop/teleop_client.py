@@ -3,6 +3,10 @@
 import argparse
 import os
 import time
+<<<<<<< HEAD
+import cv2
+=======
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 from threading import Event, Thread
 
 import numpy as np
@@ -289,6 +293,17 @@ class TeleopEnv(object):
                 self.env.save_image()
 
             self.current_image = self.env.render(mode='rgb_array')
+<<<<<<< HEAD
+            # b, g, r = cv2.split(self.current_image)
+            # b = cv2.adaptiveThreshold(b, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
+            # g = cv2.adaptiveThreshold(g, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
+            # r = cv2.adaptiveThreshold(r, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)     
+            # self.current_image = cv2.merge((b, g, r))
+            # # self.current_image = cv2.cvtColor(self.current_image, cv2.COLOR_BGR2GRAY)
+            # self.current_image = cv2.adaptiveThreshold(self.current_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
+            # self.current_image = cv2.merge((self.current_image, self.current_image, self.current_image))
+=======
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 
             self.update_screen(self.action)
 
@@ -389,6 +404,12 @@ if __name__ == '__main__':
     model = None
     vae = None
 
+<<<<<<< HEAD
+    os.environ['DONKEY_NAME'] = "my_robot1234"
+    os.environ['DONKEY_MQTT_BROKER'] = "192.168.0.24"
+
+=======
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
     if algo != '':
         if args.exp_id == 0:
             args.exp_id = get_latest_run_id(os.path.join(folder, algo), ENV_ID)

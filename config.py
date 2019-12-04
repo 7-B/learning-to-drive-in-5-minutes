@@ -14,7 +14,11 @@ N_CHANNELS = 3
 INPUT_DIM = (IMAGE_HEIGHT, IMAGE_WIDTH, N_CHANNELS)
 
 # Reward parameters
+<<<<<<< HEAD
+THROTTLE_REWARD_WEIGHT = 0.2
+=======
 THROTTLE_REWARD_WEIGHT = 0.1
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 JERK_REWARD_WEIGHT = 0.0
 
 # very smooth control: 10% -> 0.2 diff in steering allowed (requires more training)
@@ -30,16 +34,28 @@ MAX_STEERING = 1
 MIN_STEERING = - MAX_STEERING
 
 # Simulation config
+<<<<<<< HEAD
+MIN_THROTTLE = 0.21
+# max_throttle: 0.6 for level 0 and 0.5 for level 1
+MAX_THROTTLE = 0.27
+# Number of past commands to concatenate with the input
+N_COMMAND_HISTORY = 20
+=======
 MIN_THROTTLE = 0.25
 # max_throttle: 0.6 for level 0 and 0.5 for level 1
 MAX_THROTTLE = 0.35
 # Number of past commands to concatenate with the input
 N_COMMAND_HISTORY = 10
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 # Max cross track error (used in normal mode to reset the car)
 MAX_CTE_ERROR = 2.0
 # Level to use for training
 LEVEL = 3
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 # Action repeat
 FRAME_SKIP = 1
 Z_SIZE = 512  # Only used for random features

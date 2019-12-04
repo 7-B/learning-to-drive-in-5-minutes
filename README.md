@@ -2,7 +2,7 @@
 
 ### 시연 영상
 
-@[video1](https://www.youtube.com/watch?v=hI-R7GhPfQ4)
+<iframe width="560" height="315" src="http://www.youtube.com/embed/tG6PzkzNBeA" frameborder="0" allowfullscreen></iframe>
 
 ### 활용 장비
 

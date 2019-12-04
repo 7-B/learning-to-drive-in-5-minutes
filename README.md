@@ -1,130 +1,58 @@
-# Learning to Drive Smoothly in Minutes
+# Donkey car를 활용한 강화학습 자율 주행 AI
 
-Learning to drive smoothly in minutes, using a reinforcement learning algorithm -- Soft Actor-Critic (SAC) -- and a Variational AutoEncoder (VAE) in the Donkey Car simulator.
+### 시연 영상
 
+[![video1](https://www.youtube.com/vi/tG6PzkzNBeA/6.jpg)](https://www.youtube.com/watch?v=tG6PzkzNBeA)
 
-Blog post on Medium: [link](https://medium.com/@araffin/learning-to-drive-smoothly-in-minutes-450a7cdb35f4)
+### 활용 장비
 
+[image1](./img/image1.png)
 
-Level-0          | Level-1
-:-------------------------:|:-------------------------:
-![result](content/smooth.gif)  | ![result](content/level1.gif)
-[Download VAE](https://drive.google.com/open?id=1n7FosFA0hALhuESf1j1yg-hERCnfVc4b) |  [Download VAE](https://drive.google.com/open?id=1hfQNAvVp2QmbmTLklWt2MxtAjrlisr2B)
-[Download pretrained agent](https://drive.google.com/open?id=10Hgd5BKfn1AmmVdLlNcDll6yXqVkujoq) | [Download pretrained agent](https://drive.google.com/open?id=104tlsIrtOTVxJ1ZLoTpBDzK4-DRTA5et)
+- 라즈베리파이에 연결된 웹캠에서 트랙 이미지를 받아 서버컴퓨터로 전송
+- 전송된 이미지를 서버컴퓨터에서 학습하여 조향 및 속도를 라즈베리파이에 전송
+- 라즈베리파이에서 학습시키는 방법이 동키카를 제어하기는 쉬우나 연산속도가 느려서 통신을 사용하게 됨
 
-Note: the pretrained agents must be saved in `logs/sac/` folder (you need to pass `--exp-id 6` (index of the folder) to use the pretrained agent).
+### 프로세스
 
+[image2](./img/image2.png)
 
-## Quick Start
+1. 미리 촬영된 트랙 이미지로 VAE(Variational AutoEncoder) 학습시킴
+2. 라즈베리파이에서 받은 트랙이미지를 학습된 VAE 모델에 넣어 Z벡터 생성
+3. z벡터를 강화학습 모델의 입력값으로 받고, 주행을 하고 트랙을 벗어나면 키를 눌러 동키카를 정지시킴
+4. 동키카가 정지하게 되면 리워드 받음(어떻게 받는지 적기)
 
-0. Download simulator [here](https://drive.google.com/open?id=1h2VfpGHlZetL5RAPZ79bhDRkvlfuB4Wb) or build it from [source](https://github.com/tawnkramer/sdsandbox/tree/donkey)
-1. Install dependencies (cf requirements.txt)
-2. (optional but recommended) Download pre-trained VAE: [VAE Level 0](https://drive.google.com/open?id=1n7FosFA0hALhuESf1j1yg-hERCnfVc4b) [VAE Level 1](https://drive.google.com/open?id=1hfQNAvVp2QmbmTLklWt2MxtAjrlisr2B)
-3. Train a control policy for 5000 steps using Soft Actor-Critic (SAC)
+##### VAE(Variable AutoEncoder)란?
 
-```
-python train.py --algo sac -vae path-to-vae.pkl -n 5000
-```
+- GAN과 비슷한 생성모델로, encoder에서 잠재적인 특징을 추출하고 decoder에서 이 특징을 바탕으로 원래 화면으로 복원
+- 사용 이유
+    - 차원을 낮추거나 정보의 특징을 이용하면 강화학습 효율이 높아진다는 논문 존재(State representation learning for control: An overview( 2018)
+    - VAE가 특징을 보는 사람이 사물을 보는 방식을 적용
 
-4. Enjoy trained agent for 2000 steps
+### 최종 - 현실에서 강화학습
 
-```
-python enjoy.py --algo sac -vae path-to-vae.pkl --exp-id 0 -n 2000
-```
+- 학습에 적절한 속도 지정
+    - 최저속도가 너무 낮은 경우 움직이지 않음
+    [![video2](https://www.youtube.com/vi/UP-_dsFeJJU/3.jpg)](https://www.youtube.com/watch?v=UP-_dsFeJJU)
+        - 정지 마찰력 이상의 힘이 주어지지 못하기 때문
+        - 너무 낮은 속도에서는 모터가 돌아가지 않기 때문으로 추정
+    - 최고속도가 너무 높은 경우 트랙을 벗어남
+    [![video3](https://www.youtube.com/vi/jsA50GmcrXY/0.jpg)](https://www.youtube.com/watch?v=jsA50GmcrXY)
+        - 학습을 통해 경로를 재설정하기에 너무 시간이 짧기 때문으로 추정
 
-To train on a different level, you need to change `LEVEL = 0` to `LEVEL = 1` in `config.py`
+- 딜레이 문제
+    - step 속도가 빨라 학습이 잘 되지 않음
+    - 학습 및 통신에 의한 딜레이가 생기는 것으로 생각됨
+        - step 조정 전
+        [![video4](https://www.youtube.com/vi/ffiRRhRHCIE/5.jpg)](https://www.youtube.com/watch?v=ffiRRhRHCIE)
 
-## Train the Variational AutoEncoder (VAE)
+        - step 조정 후
+        [![video5](https://www.youtube.com/vi/hI-R7GhPfQ4/5.jpg)](https://www.youtube.com/watch?v=hI-R7GhPfQ4)
 
-0. Collect images using the teleoperation mode:
-
-```
-python -m teleop.teleop_client --record-folder path-to-record/folder/
-```
-
-1. Train a VAE:
-```
-python -m vae.train --n-epochs 50 --verbose 0 --z-size 64 -f path-to-record/folder/
-```
-
-## Train in Teleoparation Mode
-
-```
-python train.py --algo sac -vae logs/vae.pkl -n 5000 --teleop
-```
-
-## Test in Teleoparation Mode
-
-```
-python -m teleop.teleop_client --algo sac -vae logs/vae.pkl --exp-id 0
-```
-
-## Explore Latent Space
-
-```
-python -m vae.enjoy_latent -vae logs/level-0/vae-8.pkl
-```
-
-## Reproducing Results
-
-To reproduce the results shown in the video, you have to check different values in `config.py`.
-
-### Level 0
-
-`config.py`:
-
-```python
-MAX_STEERING_DIFF = 0.15 # 0.1 for very smooth control, but it requires more steps
-MAX_THROTTLE = 0.6 # MAX_THROTTLE = 0.5 is fine, but we can go faster
-MAX_CTE_ERROR = 2.0 # only used in normal mode, set it to 10.0 when using teleoperation mode
-LEVEL = 0
-```
-
-Train in normal mode (smooth control), it takes ~5-10 minutes:
-```
-python train.py --algo sac -n 8000 -vae logs/vae-level-0-dim-32.pkl
-```
-
-Train in normal mode (very smooth control with `MAX_STEERING_DIFF = 0.1`), it takes ~20 minutes:
-```
-python train.py --algo sac -n 20000 -vae logs/vae-level-0-dim-32.pkl
-```
-
-Train in teleoperation mode (`MAX_CTE_ERROR = 10.0`), it takes ~5-10 minutes:
-```
-python train.py --algo sac -n 8000 -vae logs/vae-level-0-dim-32.pkl --teleop
-```
-
-### Level 1
-
-Note: only teleoperation mode is available for level 1
-
-`config.py`:
-
-```python
-MAX_STEERING_DIFF = 0.15
-MAX_THROTTLE = 0.5 # MAX_THROTTLE = 0.6 can work but it's harder to train due to the sharpest turn
-LEVEL = 1
-```
-
-Train in teleoperation mode, it takes ~10 minutes:
-```
-python train.py --algo sac -n 15000 -vae logs/vae-level-1-dim-64.pkl --teleop
-```
-
-Note: although the size of the VAE is different between level 0 and 1, this is not an important factor.
+- 시뮬레이션을 통한 강화학습도 시도해보았지만 유니티를 통해 실제 환경과 유사하게 구축하는 데 어려움이 있어 현실에서 강화학습을 하게 됨
 
 
+### 개선점
 
-## Credits
-
-Related Paper: ["Learning to Drive in a Day"](https://arxiv.org/pdf/1807.00412.pdf).
-
-- [r7vme](https://github.com/r7vme/learning-to-drive-in-a-day) Author of the original implementation
-- [Wayve.ai](https://wayve.ai) for idea and inspiration.
-- [Tawn Kramer](https://github.com/tawnkramer) for Donkey simulator and Donkey Gym.
-- [Stable-Baselines](https://github.com/hill-a/stable-baselines) for DDPG/SAC and PPO implementations.
-- [RL Baselines Zoo](https://github.com/araffin/rl-baselines-zoo) for training/enjoy scripts.
-- [S-RL Toolbox](https://github.com/araffin/robotics-rl-srl) for the data loader
-- [Racing robot](https://github.com/sergionr2/RacingRobot) for the teleoperation
-- [World Models Experiments](https://github.com/hardmaru/WorldModelsExperiments) for VAE implementation.
+- 유니티 시뮬레이션 환경을 최대한 현실과 가깝게 통제
+- 정지 시 육안으로 확인 후 정지버튼을 눌러 정지시켰기 때문에 반응속도가 느렸을것으로 생각됨 -> RGB 센서나 line detection을 통해 차선이 인식되면 저절로 멈추는 시스템 구축
+- parameter를 경험적으로 정하기 보다는 근거를 찾기

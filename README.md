@@ -2,7 +2,7 @@
 
 ### 시연 영상
 
-{% include video.html id="tG6PzkzNBeA" %}
+![video1](https://www.youtube.com/watch?v=hI-R7GhPfQ4)
 
 ### 활용 장비
 

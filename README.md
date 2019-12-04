@@ -19,7 +19,26 @@
 1. 미리 촬영된 트랙 이미지로 VAE(Variational AutoEncoder) 학습시킴
 2. 라즈베리파이에서 받은 트랙이미지를 학습된 VAE 모델에 넣어 Z벡터 생성
 3. z벡터를 강화학습 모델의 입력값으로 받고, 주행을 하고 트랙을 벗어나면 키를 눌러 동키카를 정지시킴
-4. 동키카가 정지하게 되면 리워드 받음(어떻게 받는지 적기)
+4. 동키카가 정지하게 되면 리워드 받음
+
+```vim
+    def calc_reward(self, done):
+        """
+        Compute reward:
+        - +1 life bonus for each step + throttle bonus
+        - -10 crash penalty - penalty for large throttle during a crash
+        :param done: (bool)
+        :return: (float)
+        """
+        if done:
+            # penalize the agent for getting off the road fast
+            norm_throttle = (self.last_throttle - MIN_THROTTLE) / (MAX_THROTTLE - MIN_THROTTLE)
+            return REWARD_CRASH - CRASH_SPEED_WEIGHT * norm_throttle
+
+        # 1 per timesteps + throttle
+        throttle_reward = THROTTLE_REWARD_WEIGHT * (self.last_throttle / MAX_THROTTLE)
+        return 1 + throttle_reward
+```
 
 ##### VAE(Variable AutoEncoder)란?
 

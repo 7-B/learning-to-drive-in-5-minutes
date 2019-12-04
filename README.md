@@ -2,11 +2,11 @@
 
 ### 시연 영상
 
-[![video1](https://www.youtube.com/vi/tG6PzkzNBeA/6.jpg)](https://www.youtube.com/watch?v=tG6PzkzNBeA)
+[![video1](https://www.youtube.com/vi/tG6PzkzNBeA/0.jpg)](https://www.youtube.com/watch?v=tG6PzkzNBeA)
 
 ### 활용 장비
 
-![image1](./img/image1.png)
+![image1](./img/image1.png){: width = "70%"}
 
 - 라즈베리파이에 연결된 웹캠에서 트랙 이미지를 받아 서버컴퓨터로 전송
 - 전송된 이미지를 서버컴퓨터에서 학습하여 조향 및 속도를 라즈베리파이에 전송
@@ -32,7 +32,7 @@
 
 - 학습에 적절한 속도 지정
     - 최저속도가 너무 낮은 경우 움직이지 않음
-    [![video2](https://www.youtube.com/vi/UP-_dsFeJJU/3.jpg)](https://www.youtube.com/watch?v=UP-_dsFeJJU)
+    [![video2](https://www.youtube.com/vi/UP-_dsFeJJU/0.jpg)](https://www.youtube.com/watch?v=UP-_dsFeJJU)
         - 정지 마찰력 이상의 힘이 주어지지 못하기 때문
         - 너무 낮은 속도에서는 모터가 돌아가지 않기 때문으로 추정
     - 최고속도가 너무 높은 경우 트랙을 벗어남

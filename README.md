@@ -6,7 +6,7 @@
 
 ### 활용 장비
 
-[image1](./img/image1.png)
+![image1](./img/image1.png)
 
 - 라즈베리파이에 연결된 웹캠에서 트랙 이미지를 받아 서버컴퓨터로 전송
 - 전송된 이미지를 서버컴퓨터에서 학습하여 조향 및 속도를 라즈베리파이에 전송
@@ -14,7 +14,7 @@
 
 ### 프로세스
 
-[image2](./img/image2.png)
+![image2](./img/image2.png)
 
 1. 미리 촬영된 트랙 이미지로 VAE(Variational AutoEncoder) 학습시킴
 2. 라즈베리파이에서 받은 트랙이미지를 학습된 VAE 모델에 넣어 Z벡터 생성

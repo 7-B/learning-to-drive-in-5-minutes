@@ -48,11 +48,11 @@
     - 학습 및 통신에 의한 딜레이가 생기는 것으로 생각됨
         - step 조정 전
         
-        [![video4](https://img.youtube.com/vi/ffiRRhRHCIE/5.jpg)](https://youtu.be/ffiRRhRHCIE?t=0s)
+        [![video4](https://img.youtube.com/vi/ffiRRhRHCIE/0.jpg)](https://youtu.be/ffiRRhRHCIE?t=0s)
 
         - step 조정 후
         
-        [![video5](https://img.youtube.com/vi/hI-R7GhPfQ4/5.jpg)](https://youtu.be/hI-R7GhPfQ4?t=0s)
+        [![video5](https://img.youtube.com/vi/hI-R7GhPfQ4/0.jpg)](https://youtu.be/hI-R7GhPfQ4?t=0s)
 
 - 시뮬레이션을 통한 강화학습도 시도해보았지만 유니티를 통해 실제 환경과 유사하게 구축하는 데 어려움이 있어 현실에서 강화학습을 하게 됨
 

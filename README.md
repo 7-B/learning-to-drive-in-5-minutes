@@ -2,11 +2,11 @@
 
 ### 시연 영상
 
-[![video1](https://www.youtube.com/vi/tG6PzkzNBeA/0.jpg)](https://www.youtube.com/watch?v=tG6PzkzNBeA)
+[![video1](https://img.youtube.com/vi/tG6PzkzNBeA/3.jpg)](https://www.youtube.com/watch?v=tG6PzkzNBeA)
 
 ### 활용 장비
 
-![image1](./img/image1.png){: width = "70%"}
+![image1](./img/image1.png)
 
 - 라즈베리파이에 연결된 웹캠에서 트랙 이미지를 받아 서버컴퓨터로 전송
 - 전송된 이미지를 서버컴퓨터에서 학습하여 조향 및 속도를 라즈베리파이에 전송
@@ -32,21 +32,21 @@
 
 - 학습에 적절한 속도 지정
     - 최저속도가 너무 낮은 경우 움직이지 않음
-    [![video2](https://www.youtube.com/vi/UP-_dsFeJJU/0.jpg)](https://www.youtube.com/watch?v=UP-_dsFeJJU)
+    [![video2](https://img.youtube.com/vi/UP-_dsFeJJU/0.jpg)](https://www.youtube.com/watch?v=UP-_dsFeJJU)
         - 정지 마찰력 이상의 힘이 주어지지 못하기 때문
         - 너무 낮은 속도에서는 모터가 돌아가지 않기 때문으로 추정
     - 최고속도가 너무 높은 경우 트랙을 벗어남
-    [![video3](https://www.youtube.com/vi/jsA50GmcrXY/0.jpg)](https://www.youtube.com/watch?v=jsA50GmcrXY)
+    [![video3](https://img.youtube.com/vi/jsA50GmcrXY/0.jpg)](https://www.youtube.com/watch?v=jsA50GmcrXY)
         - 학습을 통해 경로를 재설정하기에 너무 시간이 짧기 때문으로 추정
 
 - 딜레이 문제
     - step 속도가 빨라 학습이 잘 되지 않음
     - 학습 및 통신에 의한 딜레이가 생기는 것으로 생각됨
         - step 조정 전
-        [![video4](https://www.youtube.com/vi/ffiRRhRHCIE/5.jpg)](https://www.youtube.com/watch?v=ffiRRhRHCIE)
+        [![video4](https://img.youtube.com/vi/ffiRRhRHCIE/5.jpg)](https://www.youtube.com/watch?v=ffiRRhRHCIE)
 
         - step 조정 후
-        [![video5](https://www.youtube.com/vi/hI-R7GhPfQ4/5.jpg)](https://www.youtube.com/watch?v=hI-R7GhPfQ4)
+        [![video5](https://img.youtube.com/vi/hI-R7GhPfQ4/5.jpg)](https://www.youtube.com/watch?v=hI-R7GhPfQ4)
 
 - 시뮬레이션을 통한 강화학습도 시도해보았지만 유니티를 통해 실제 환경과 유사하게 구축하는 데 어려움이 있어 현실에서 강화학습을 하게 됨
 

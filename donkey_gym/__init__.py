@@ -3,11 +3,7 @@ from gym.envs.registration import register
 register(
     id='DonkeyVae-v0',
     entry_point='donkey_gym.vae_env.vae_env:DonkeyVAEEnv',
-<<<<<<< HEAD
     max_episode_steps=None,
-=======
-    timestep_limit=None,
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 )
 #
 # register(

@@ -97,10 +97,6 @@ class SACWithVAE(SAC):
                 assert action.shape == self.env.action_space.shape
 
                 new_obs, reward, done, info = self.env.step(rescaled_action)
-<<<<<<< HEAD
-                print("reward : %0.2f done : %s" % (reward, done))
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
                 ep_len += 1
 
                 if print_freq > 0 and ep_len % print_freq == 0 and ep_len > 0:

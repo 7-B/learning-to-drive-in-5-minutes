@@ -201,17 +201,6 @@ class DataLoader(object):
         if im is None:
             raise ValueError("tried to load {}.jpg, but it was not found".format(image_path))
 
-<<<<<<< HEAD
-        # im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        # im = cv2.adaptiveThreshold(im, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
-        # im = cv2.merge((im, im, im))
-        # b, g, r = cv2.split(im)
-        # b = cv2.adaptiveThreshold(b, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
-        # g = cv2.adaptiveThreshold(g, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
-        # r = cv2.adaptiveThreshold(r, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)     
-        # im = cv2.merge((b, g, r))
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
         im = preprocess_image(im)
 
         im = im.reshape((1,) + im.shape)

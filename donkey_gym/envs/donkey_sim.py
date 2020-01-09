@@ -4,10 +4,7 @@ import asyncore
 import base64
 import math
 import time
-<<<<<<< HEAD
 import cv2
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 from io import BytesIO
 from threading import Thread
 
@@ -196,12 +193,6 @@ class DonkeyUnitySimHandler(IMesgHandler):
 
         self.last_obs = self.image_array
         observation = self.image_array
-<<<<<<< HEAD
-        observation = cv2.cvtColor(observation, cv2.COLOR_BGR2GRAY)
-        observation = cv2.adaptiveThreshold(observation, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
-        observation = cv2.merge((observation, observation, observation))
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
         done = self.is_game_over()
         reward = self.calc_reward(done)
         info = {}
@@ -251,10 +242,6 @@ class DonkeyUnitySimHandler(IMesgHandler):
         # Region of interest
         r = ROI
         image = image[int(r[1]):int(r[1] + r[3]), int(r[0]):int(r[0] + r[2])]
-<<<<<<< HEAD
-
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
         # Convert RGB to BGR
         # image = image[:, :, ::-1]
         self.image_array = image

@@ -23,14 +23,11 @@ except:
     pass
 
 from local_control.local_client import LocalControlEnv
-<<<<<<< HEAD
 import tensorflow as tf
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.Session(config=config)
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-tb', '--tensorboard-log', help='Tensorboard log dir', default='', type=str)
@@ -249,7 +246,3 @@ if normalize:
         env = env.venv
     # Important: save the running average, for testing the agent we need that normalization
     env.save_running_average(params_path)
-<<<<<<< HEAD
-print("end")
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0

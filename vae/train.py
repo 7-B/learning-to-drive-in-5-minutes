@@ -13,14 +13,11 @@ from config import ROI
 from vae.controller import VAEController
 from .data_loader import DataLoader
 from .model import ConvVAE
-<<<<<<< HEAD
 import tensorflow as tf
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.Session(config=config)
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--folder', help='Path to a folder containing images for training', type=str,

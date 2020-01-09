@@ -34,10 +34,6 @@ class Recorder(object):
 
     def reset(self):
         obs = self.env.reset()
-<<<<<<< HEAD
-        print(is_recording)
-=======
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
         if self.is_recording:
             self.save_image()
         return obs
@@ -57,11 +53,7 @@ class Recorder(object):
     def save_image(self):
         image = self.env.render(mode='rgb_array')
         # Convert RGB to BGR
-<<<<<<< HEAD
         image = image[:, :, ::-1]
-=======
-        #image = image[:, :, ::-1]
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
         cv2.imwrite("{}/{}.jpg".format(self.folder, self.current_idx), image)
         if self.verbose >= 2:
             print("Saving", "{}/{}.jpg".format(self.folder, self.current_idx))
@@ -76,8 +68,4 @@ class Recorder(object):
         self.set_recording_status(not self.is_recording)
 
     def exit_scene(self):
-<<<<<<< HEAD
         self.env.exit_scene()
-=======
-        self.env.exit_scene()
->>>>>>> 68797401f0eadbe936f6351179c1f996f483edf0
